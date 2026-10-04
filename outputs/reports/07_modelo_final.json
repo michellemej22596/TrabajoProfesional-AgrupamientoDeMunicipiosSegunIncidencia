@@ -1,0 +1,26 @@
+{
+  "algoritmo": "K-means",
+  "k": 5,
+  "init": "k-means++",
+  "n_init": 500,
+  "random_state": 42,
+  "representacion": "R4b_agravados_agrupados",
+  "silhouette": 0.175,
+  "davies_bouldin": 1.6135,
+  "calinski_harabasz": 115.55,
+  "estabilidad_global": 0.798,
+  "jaccard_por_grupo": [
+    0.929,
+    0.804,
+    0.808,
+    0.795,
+    0.875
+  ],
+  "tamanos": [
+    71,
+    77,
+    42,
+    95,
+    55
+  ]
+}

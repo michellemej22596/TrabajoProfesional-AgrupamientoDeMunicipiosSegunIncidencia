@@ -1,0 +1,12 @@
+{
+  "representacion": "R4b_agravados_agrupados",
+  "k_por_algoritmo": {
+    "K-means": 3,
+    "GMM (diag)": 3,
+    "Spectral": 3
+  },
+  "ganador": "K-means",
+  "k_ganador": 3,
+  "k_alternativo_para_optimizacion": 5,
+  "semilla": 42
+}

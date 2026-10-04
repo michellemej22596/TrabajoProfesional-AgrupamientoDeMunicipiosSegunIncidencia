@@ -1,0 +1,23 @@
+{
+  "representacion": "R4b_agravados_agrupados",
+  "algoritmos": [
+    "K-means",
+    "GMM (diag)",
+    "Spectral"
+  ],
+  "algoritmos_descartados": {
+    "DBSCAN / HDBSCAN": "Sin partición útil: un solo grupo o más del 69 % de ruido.",
+    "K-medoids": "Misma familia (Particional) que un algoritmo seleccionado, con menor puntuación.",
+    "Ward": "Familia Jerárquica con menor puntuación (baja estabilidad).",
+    "BIRCH": "Familia Jerárquica con menor puntuación (baja estabilidad).",
+    "GMM (tied)": "Misma familia (Probabilística) que un algoritmo seleccionado, con menor puntuación.",
+    "GMM (full)": "Misma familia (Probabilística) que un algoritmo seleccionado, con menor puntuación."
+  },
+  "rango_k_evaluacion": [
+    3,
+    4,
+    5,
+    6
+  ],
+  "semilla": 42
+}
