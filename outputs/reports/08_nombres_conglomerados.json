@@ -1,0 +1,42 @@
+{
+  "1": {
+    "nombre": "Baja incidencia general",
+    "nombre_corto": "Baja incidencia",
+    "descripcion": "Tasas muy por debajo de la nacional en casi todos los delitos (0.1–0.3×). Los delitos sexuales pesan relativamente más en su mezcla (32 %). Predomina en el altiplano occidental.",
+    "indice_patrimonial_extorsiva": 0.106,
+    "indice_violencia_letal": 0.149,
+    "color": "#cde2fb"
+  },
+  "2": {
+    "nombre": "Predominio patrimonial con baja violencia letal",
+    "nombre_corto": "Patrimonial, baja violencia",
+    "descripcion": "Tasas por debajo de la nacional, pero con 3 veces más robos, hurtos y extorsión que el G1; estos delitos son el 83 % de sus denuncias. Violencia letal muy baja (0.2×).",
+    "indice_patrimonial_extorsiva": 0.343,
+    "indice_violencia_letal": 0.203,
+    "color": "#6da7ec"
+  },
+  "3": {
+    "nombre": "Violencia letal con baja criminalidad patrimonial",
+    "nombre_corto": "Violencia letal",
+    "descripcion": "Homicidio y asesinato en el nivel nacional (1.05×) y violación por encima (1.19×), con robos, hurtos y extorsión muy bajos (0.25×). Mayor peso de delitos contra la vida (13 %). Norte y oriente del país.",
+    "indice_patrimonial_extorsiva": 0.251,
+    "indice_violencia_letal": 1.053,
+    "color": "#eb6834"
+  },
+  "4": {
+    "nombre": "Incidencia intermedia",
+    "nombre_corto": "Intermedia",
+    "descripcion": "Índices entre 0.6× y 1.1× en todas las dimensiones: el perfil más cercano al promedio del país, sin un delito dominante.",
+    "indice_patrimonial_extorsiva": 0.698,
+    "indice_violencia_letal": 0.946,
+    "color": "#256abf"
+  },
+  "5": {
+    "nombre": "Alta incidencia generalizada",
+    "nombre_corto": "Alta incidencia",
+    "descripcion": "Entre 2 y 2.6 veces la tasa nacional en robos, hurtos y extorsión, y casi el doble en violencia letal. Concentra el 72 % de las denuncias. Corredor central y costa sur.",
+    "indice_patrimonial_extorsiva": 2.357,
+    "indice_violencia_letal": 1.963,
+    "color": "#0d366b"
+  }
+}
