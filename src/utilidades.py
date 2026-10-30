@@ -176,20 +176,70 @@ def configurar_estilo() -> None:
     })
 
 
+# Las explicaciones de cada figura van en su leyenda (pie de figura) del
+# informe, no dentro de la imagen. Cambiar a True para volver a dibujarlas.
+MOSTRAR_SUBTITULOS = False
+
+
 def subtitulo(ax, texto: str) -> None:
-    """Agrega un subtítulo gris debajo del título del eje."""
+    """Agrega un subtítulo gris debajo del título del eje (desactivado por defecto)."""
+    if not MOSTRAR_SUBTITULOS:
+        return
     ax.text(0, 1.02, texto, transform=ax.transAxes, fontsize=9,
             color=COLOR["texto_sec"], va="bottom", ha="left")
 
 
+# Las figuras del informe llevan su fuente en el pie de figura del documento,
+# no dentro de la imagen. Cambiar a True para volver a dibujarla en la figura.
+MOSTRAR_FUENTE_EN_FIGURAS = False
+
+
 def fuente(fig, texto: str = "Fuente: elaboración propia con datos del MP e INE.") -> None:
-    """Nota de fuente en la esquina inferior izquierda de la figura."""
+    """Nota de fuente en la esquina inferior izquierda de la figura (desactivada por defecto)."""
+    if not MOSTRAR_FUENTE_EN_FIGURAS:
+        return
     fig.text(0.01, 0.005, texto, fontsize=7.5, color=COLOR["gris"],
              ha="left", va="bottom")
 
 
+# Figuras compuestas por varios gráficos: cada panel se identifica con un
+# inciso (a), (b), ... al inicio de su título, en orden de lectura.
+FIGURAS_CON_INCISOS = {
+    "03_indice_por_delito", "02_distribucion_poblacion", "06_embudo_tasas",
+    "13_pca_cargas_y_municipios", "02_observada_vs_suavizada", "01_metricas_por_k",
+    "02_criterios_propios", "03_siluetas", "04_centroides_k3_vs_k5",
+    "07_algoritmos_k3_k5", "05_evolucion_conglomerados", "08_mapas_por_conglomerado",
+}
+
+
+def etiquetar_paneles(fig) -> None:
+    """Antepone (a), (b), ... al título de cada panel, de izquierda a derecha y de arriba abajo."""
+    paneles = []
+    for ax in fig.axes:
+        titulos = [t for t in (ax.title, ax._left_title, ax._right_title) if t.get_text()]
+        if titulos:
+            pos = ax.get_position()
+            paneles.append((round(-pos.y1, 2), pos.x0, titulos[0]))
+    for i, (_, _, titulo) in enumerate(sorted(paneles, key=lambda p: (p[0], p[1]))):
+        texto = titulo.get_text()
+        if not texto.startswith("("):
+            titulo.set_text(f"({chr(97 + i)}) {texto}")
+
+
+def _quitar_textos_explicativos(fig) -> None:
+    """Elimina los subtítulos grises de la figura (las explicaciones van en la leyenda)."""
+    from matplotlib.colors import same_color
+    for texto in list(fig.texts):
+        if same_color(texto.get_color(), COLOR["texto_sec"]):
+            texto.remove()
+
+
 def guardar_figura(fig, nombre: str, carpeta: str) -> Path:
     """Guarda la figura en outputs/figures/<carpeta>/<nombre>.png (300 dpi)."""
+    if not MOSTRAR_SUBTITULOS:
+        _quitar_textos_explicativos(fig)
+    if nombre in FIGURAS_CON_INCISOS:
+        etiquetar_paneles(fig)
     destino = RUTA_FIGURAS / carpeta
     destino.mkdir(parents=True, exist_ok=True)
     ruta = destino / f"{nombre}.png"
@@ -286,3 +336,12 @@ def estadistico_hopkins(X, proporcion: float = 0.1, repeticiones: int = 30,
         w = vecinos.kneighbors(X[idx], n_neighbors=2)[0][:, 1]
         resultados.append(u.sum() / (u.sum() + w.sum()))
     return float(np.mean(resultados)), float(np.std(resultados))
+
+
+# ---------------------------------------------------------------------------
+# 5. Conglomerados finales (K-means, k = 5)
+# ---------------------------------------------------------------------------
+# G1, G2, G4 y G5 están ordenados por intensidad -> rampa azul claro-oscuro.
+# G3 tiene un perfil distinto (violencia contra las personas) -> tono contrastante.
+# Validado para separación en mapas (todas las parejas, ΔE ≥ 18.6, incl. daltonismo).
+COLOR_CLUSTER = {1: "#cde2fb", 2: "#6da7ec", 3: "#eb6834", 4: "#256abf", 5: "#0d366b"}
