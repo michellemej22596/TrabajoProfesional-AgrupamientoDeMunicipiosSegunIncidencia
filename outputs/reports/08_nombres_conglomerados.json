@@ -10,7 +10,7 @@
   "2": {
     "nombre": "Predominio patrimonial con baja violencia letal",
     "nombre_corto": "Patrimonial, baja violencia",
-    "descripcion": "Tasas por debajo de la nacional, pero con 3 veces más robos, hurtos y extorsión que el G1; estos delitos son el 83 % de sus denuncias. Violencia letal muy baja (0.2×).",
+    "descripcion": "Tasas por debajo de la nacional, pero con 3 veces más robos, hurtos y extorsión que el G1. Estos delitos son el 83 % de sus denuncias. Violencia letal muy baja (0.2×).",
     "indice_patrimonial_extorsiva": 0.343,
     "indice_violencia_letal": 0.203,
     "color": "#6da7ec"
